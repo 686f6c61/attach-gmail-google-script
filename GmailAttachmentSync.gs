@@ -837,7 +837,7 @@ function doGet() {
   cargarConfiguracion();
   
   return HtmlService.createHtmlOutputFromFile('ConfiguracionUI')
-    .setTitle('SPARRING Attach GMAIL - Configuración')
+    .setTitle('Attach GMAIL - Configuración')
     .setWidth(850)
     .setHeight(600);
 }
