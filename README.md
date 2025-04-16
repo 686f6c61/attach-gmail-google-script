@@ -286,18 +286,10 @@ El script verifica si el archivo ya existe antes de guardarlo. Si encuentra un a
 ### ¿Puedo modificar el código para añadir funcionalidades?
 Sí, el código está disponible en el editor de Google Apps Script y puedes modificarlo según tus necesidades. Si no tienes experiencia con JavaScript, considera hacer una copia de seguridad antes de realizar cambios importantes.
 
-## 📞 Soporte y contacto
-
-Para obtener ayuda, reportar problemas o sugerir mejoras:
-
-- Visita [SPARRING.dev](https://sparring.dev)
-- Envía un correo a support@sparring.dev
-- Abre un issue en nuestro repositorio de GitHub
-
 ## 📜 Licencia
 
 Este proyecto es software libre y se distribuye bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
 
 ---
 
-Desarrollado con ❤️ por el equipo de [SPARRING.dev](https://sparring.dev) - Optimizando procesos. Marzo de 2025.
+Desarrollado con ❤️ por [https://github.com/686f6c61](https://github.com/686f6c61) - Marzo de 2025.
