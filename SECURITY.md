@@ -1,71 +1,59 @@
-# Política de seguridad y privacidad
+# Política de Seguridad
 
-## Compromiso con la privacidad y seguridad de los datos
+## Filosofía de Seguridad
 
-Nos tomamos muy en serio la seguridad y privacidad de tus datos. Este documento detalla nuestro enfoque y políticas respecto a la gestión de datos en el script de sincronización de adjuntos de Gmail.
+La seguridad y la privacidad de los datos son fundamentales para el diseño de **Attach GMAIL**. Este script ha sido desarrollado con un enfoque de "privacidad por diseño", asegurando que el control de los datos permanezca en todo momento en manos del usuario. Nuestra política se basa en la transparencia total y la minimización de la exposición de datos.
 
-## Modelo de ejecución
+## Modelo de Ejecución y Flujo de Datos
 
-- **Ejecución Local**: Todo el código se ejecuta exclusivamente bajo la cuenta de Google del usuario, utilizando los permisos otorgados durante la instalación.
-- **No Recopilamos Datos**: No recopilamos, almacenamos ni procesamos ninguna información del usuario en nuestros servidores.
-- **Sin Acceso a Cuentas**: Nuestro equipo no tiene acceso a las cuentas de los usuarios ni a sus datos en ningún momento.
+-   **Ejecución Exclusiva en el Entorno de Google**: El código de `Attach GMAIL` se ejecuta íntegramente en la infraestructura de Google Apps Script, dentro del entorno de la cuenta de Google del propio usuario. No hay componentes de servidor de terceros involucrados.
+-   **Sin Recopilación de Datos Externos**: El script no recopila, almacena, transmite ni procesa ninguna información personal o de contenido fuera de los servicios de Google (Gmail y Google Drive) del usuario. La configuración y los metadatos de estado (como la fecha de la última notificación) se almacenan en `PropertiesService`, un servicio de Google Apps Script que guarda los datos dentro de la cuenta del usuario.
+-   **Acceso Cero por Parte del Desarrollador**: El desarrollador (`686f6c61`) no tiene acceso a las cuentas de los usuarios, a sus datos, a los adjuntos procesados ni a la configuración del script en ningún momento.
 
-## Google como procesador de datos
+## Permisos Requeridos
 
-Es importante destacar que todos los datos son procesados y almacenados por Google en su infraestructura. Google actúa como el procesador de datos real cuando utilizas este script:
+Durante la autorización inicial, el script solicita los siguientes permisos de OAuth 2.0. A continuación se detalla el propósito de cada uno:
 
-- **Políticas de Google**: El uso de este script está sujeto a las [políticas de privacidad de Google](https://policies.google.com/privacy) y los [términos de servicio de Google Workspace](https://workspace.google.com/terms/dpa_terms.html).
-- **Acuerdo de Procesamiento de Datos**: Google ofrece un [Acuerdo de Procesamiento de Datos](https://workspace.google.com/terms/dpa_terms.html) que cumple con los requisitos del RGPD para usuarios de Google Workspace.
-- **Medidas de Seguridad**: Los datos procesados por este script se benefician de las [medidas de seguridad de Google](https://workspace.google.com/security/) para proteger la información.
-- **Ubicación de los Datos**: Los datos se almacenan en los centros de datos de Google según la [configuración de tu cuenta de Google](https://support.google.com/a/answer/7630496).
+-   `https://www.googleapis.com/auth/gmail.readonly`: Para leer los correos electrónicos y sus adjuntos.
+-   `https://www.googleapis.com/auth/gmail.modify`: Para aplicar etiquetas a los correos que ya han sido procesados, evitando así la duplicación de datos.
+-   `https://www.googleapis.com/auth/drive`: Para crear carpetas y guardar los archivos adjuntos en el Google Drive del usuario.
+-   `https://www.googleapis.com/auth/script.container.ui`: Para mostrar la interfaz de usuario de configuración.
+-   `https://www.googleapis.com/auth/script.send_mail`: Para enviar correos electrónicos de notificación al propio usuario.
+-   `https://www.googleapis.com/auth/script.storage`: Para guardar la configuración del script.
 
-## Permisos requeridos
+Estos permisos se utilizan exclusivamente para las funcionalidades descritas y no para otros fines.
 
-El script requiere los siguientes permisos para funcionar correctamente:
+## Reporte de Vulnerabilidades
 
-- **Acceso a Gmail**: Para leer los correos y adjuntos, y aplicar etiquetas a los mensajes procesados.
-- **Acceso a Google Drive**: Para almacenar los adjuntos en la ubicación especificada por el usuario.
-- **Acceso a las Propiedades del Script**: Para guardar la configuración personalizada del usuario.
+La seguridad es un esfuerzo colaborativo. Si descubre una vulnerabilidad de seguridad, le agradecemos que nos la comunique de forma responsable. Valoramos la contribución de la comunidad para mantener la seguridad de este proyecto.
 
-Estos permisos son utilizados exclusivamente para las funcionalidades descritas en la documentación del script.
+### Cómo Reportar una Vulnerabilidad
 
-## Gobernanza de datos
+1.  **Cree un "Issue" en GitHub**: Por favor, abra un nuevo issue en el [repositorio del proyecto](https://github.com/686f6c61/attach-gmail-google-script/issues).
+2.  **Proporcione Detalles Claros**: En su reporte, incluya la siguiente información:
+    -   Una descripción clara y concisa de la vulnerabilidad.
+    -   Pasos detallados para reproducir el problema.
+    -   El impacto potencial de la vulnerabilidad.
+    -   Cualquier otra información técnica relevante.
 
-Creemos firmemente en la transparencia y la gobernanza adecuada de los datos:
+### Nuestro Compromiso
 
-- **Transparencia Total**: El código fuente está disponible públicamente para su revisión.
-- **Control del Usuario**: El usuario tiene control total sobre qué datos procesa el script y dónde se almacenan.
-- **Procesamiento Local**: Todos los datos se procesan localmente en la infraestructura de Google, sin pasar por servidores de terceros.
+-   Nos comprometemos a investigar todos los reportes de vulnerabilidades de manera oportuna.
+-   Trabajaremos diligentemente para verificar y solucionar cualquier problema confirmado.
+-   Mantendremos una comunicación abierta con el reportante durante todo el proceso.
 
-## Cumplimiento normativo
+## Cumplimiento Normativo
 
-Nuestras prácticas de privacidad y seguridad están diseñadas para cumplir con las normativas de protección de datos, incluido el Reglamento General de Protección de Datos (RGPD) de la Unión Europea:
+Aunque `Attach GMAIL` es una herramienta de código abierto y no un servicio comercial, su diseño respeta los principios de normativas de protección de datos como el GDPR:
 
-- **Minimización de Datos**: El script solo accede a los datos estrictamente necesarios para su función.
-- **Propósito Específico**: Los datos se utilizan únicamente para el propósito explícito de sincronizar adjuntos.
-- **Derechos del Usuario**: Respetamos plenamente los derechos de los usuarios sobre sus datos.
-
-Para más información sobre la normativa de protección de datos de la Unión Europea, puedes consultar estos recursos oficiales:
-
-- [Portal oficial del RGPD de la UE](https://gdpr.eu/)
-- [Comisión Europea - Protección de datos](https://ec.europa.eu/info/law/law-topic/data-protection_es)
-- [Comité Europeo de Protección de Datos](https://edpb.europa.eu/)
-
-## Reporte de vulnerabilidades
-
-Si descubres alguna vulnerabilidad de seguridad en nuestro código, te agradecemos que nos lo comuniques de manera responsable:
-
-1. Crea un issue en el repositorio de GitHub: [https://github.com/686f6c61/attach-gmail-google-script/issues](https://github.com/686f6c61/attach-gmail-google-script/issues)
-2. Incluye pasos claros para reproducir el problema
-3. Nos comprometemos a investigar todas las notificaciones legítimas y a trabajar con diligencia para resolver cualquier problema identificado
+-   **Minimización de Datos**: El script solo accede a los datos estrictamente necesarios para su funcionamiento.
+-   **Limitación de la Finalidad**: Los datos se utilizan únicamente para el propósito explícito de sincronizar adjuntos de correo electrónico.
+-   **Control del Usuario**: El usuario tiene control total sobre la ejecución del script, la configuración y los datos procesados.
 
 ## Contacto
 
-Para cualquier pregunta relacionada con la seguridad o privacidad de este producto, no dudes en contactarnos:
-
-- GitHub: [https://github.com/686f6c61](https://github.com/686f6c61)
-- Repositorio: [https://github.com/686f6c61/attach-gmail-google-script](https://github.com/686f6c61/attach-gmail-google-script)
+Para cualquier pregunta o aclaración sobre la seguridad de este proyecto, no dude en abrir un issue en el repositorio de GitHub.
 
 ---
 
-*Última actualización: Mayo de 2025*
+*Última actualización: 2025-07-19*

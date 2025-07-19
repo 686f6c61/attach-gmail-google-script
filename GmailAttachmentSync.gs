@@ -6,7 +6,7 @@
  * de Gmail a carpetas específicas en Google Drive, organizándolos por dominio del remitente.
  * 
  * @proyecto: Attach GMAIL
- * @versión: 1.0.2
+ * @versión: 1.0.4
  * @autor: https://github.com/686f6c61
  * @fecha: 2025-03-23
  * @licencia: MIT
@@ -54,6 +54,9 @@ const CONFIG = {
   
   // Activar/desactivar notificaciones por correo
   ENVIAR_NOTIFICACIONES: true,
+  
+  // Frecuencia de notificaciones por correo ('diaria', 'semanal', 'quincenal', 'nunca')
+  FRECUENCIA_NOTIFICACIONES: 'diaria',
   
   // Frecuencia de notificaciones por correo ('diaria', 'semanal', 'quincenal', 'nunca')
   FRECUENCIA_NOTIFICACIONES: 'diaria',
@@ -216,8 +219,8 @@ function syncAttachments() {
     estadisticas.finalizado = new Date();
     estadisticas.tiempoTotal = (estadisticas.finalizado - estadisticas.iniciado) / 1000; // en segundos
     
-    // Actualizar correos pendientes (restar los procesados)
-    estadisticas.correosPendientes = Math.max(0, estadisticas.correosPendientes - estadisticas.correosProcesados);
+    // Volver a contar los correos pendientes para obtener la cifra más actualizada
+    estadisticas.correosPendientes = contarCorreosPendientes();
     Logger.log(`Quedan ${estadisticas.correosPendientes} correos pendientes por procesar.`);
     
     Logger.log(`Sincronización completada. Se procesaron ${estadisticas.correosProcesados} correos con ${estadisticas.adjuntosGuardados} adjuntos guardados.`);
@@ -390,6 +393,12 @@ function processEmail(email, mainFolder, processedLabel) {
     // Guardar cada adjunto
     for (const attachment of attachments) {
       let fileName = attachment.getName();
+
+      // Ignorar archivos sin nombre o con nombres genéricos como "untitled.png"
+      if (!fileName || fileName.toLowerCase().startsWith('untitled.')) {
+        Logger.log(`Adjunto ignorado por tener un nombre genérico o vacío: "${fileName}"`);
+        continue;
+      }
       
       // Verificar si el tipo de archivo está permitido
       if (!isFileTypeAllowed(fileName)) {
@@ -1069,27 +1078,29 @@ function eliminarCarpetaDominio(dominio) {
  *=====================================================================*/
 
 /**
- * Cuenta cuántos correos quedan pendientes por procesar (sin la etiqueta de procesados).
- * @return {number} - Número de correos pendientes por procesar.
+ * Cuenta cuántos correos con adjuntos quedan pendientes por procesar.
+ * @return {number} - Número de hilos de correo pendientes.
  */
 function contarCorreosPendientes() {
   try {
-    // Obtener la etiqueta que marca los correos como procesados
-    const processedLabel = getOrCreateLabel(CONFIG.PROCESSED_LABEL_NAME);
+    const processedLabelName = CONFIG.PROCESSED_LABEL_NAME;
     
-    // Construir la consulta que excluye los correos con la etiqueta de procesados
-    let query = '-label:' + CONFIG.PROCESSED_LABEL_NAME;
+    // Construir la consulta para encontrar hilos con adjuntos que no tengan la etiqueta de procesado.
+    let query = `has:attachment -label:"${processedLabelName}"`;
     
     // Añadir filtro de fecha si está configurado
     if (CONFIG.DAYS_TO_LOOK_BACK > 0) {
       const pastDate = new Date();
       pastDate.setDate(pastDate.getDate() - CONFIG.DAYS_TO_LOOK_BACK);
       const formattedDate = Utilities.formatDate(pastDate, Session.getScriptTimeZone(), 'yyyy/MM/dd');
-      query += ' after:' + formattedDate;
+      query += ` after:${formattedDate}`;
     }
     
-    // Contar todos los mensajes que coinciden con la consulta
-    return GmailApp.search(query).reduce((count, thread) => count + thread.getMessageCount(), 0);
+    // GmailApp.search tiene un límite, pero esto nos da una buena estimación de los hilos pendientes.
+    // Contar hilos es más representativo que contar mensajes, ya que la etiqueta se aplica a nivel de hilo.
+    const threads = GmailApp.search(query, 0, 500);
+    return threads.length;
+    
   } catch (error) {
     Logger.log('Error al contar correos pendientes: ' + error.message);
     return -1; // Valor de error
@@ -1124,6 +1135,8 @@ function debeEnviarNotificacion() {
       return diasTranscurridos >= 7;
     case 'quincenal':
       return diasTranscurridos >= 15;
+    case 'mensual':
+      return diasTranscurridos >= 30;
     default:
       return true;
   }
