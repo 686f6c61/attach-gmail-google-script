@@ -2,6 +2,8 @@
 
 ## Descripción General
 
+![Interfaz de Usuario](resources/ui-julio25.png)
+
 **Attach GMAIL** es un robusto script de Google Apps Script diseñado para la sincronización automatizada de adjuntos de Gmail a Google Drive. El script ofrece un sistema altamente configurable e inteligente para organizar archivos basándose en el dominio del remitente, palabras clave específicas en el asunto del correo y tipo de archivo. Está diseñado para manejar grandes volúmenes de correos de manera eficiente, ofreciendo una solución integral para la gestión de datos y copias de seguridad dentro del ecosistema de Google Workspace.
 
 Esta herramienta es ideal para profesionales, equipos y particulares que necesiten mantener un archivo organizado, accesible y a largo plazo de sus adjuntos de correo.
