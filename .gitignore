@@ -1,0 +1,12 @@
+# Google Apps Script
+.clasp.json
+appsscript.json
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
