@@ -2,13 +2,13 @@
  * Attach GMAIL - Utilidades
  * ===============================================================
  *
- * Funciones utilitarias, validadores y sistema de logging
+ * Funciones utilitarias, validadores y sistema de logging.
+ * Proporciona normalización de texto, extracción de dominios,
+ * filtros de extensiones y el sistema de registro centralizado.
  *
- * @proyecto: Attach GMAIL
- * @versión: 1.1.0
- * @autor: https://github.com/686f6c61
- * @fecha: 2025-11-17
- * @licencia: MIT
+ * @proyecto Attach GMAIL
+ * @autor https://github.com/686f6c61
+ * @licencia MIT
  */
 
 // ============================================================================
@@ -16,35 +16,24 @@
 // ============================================================================
 
 /**
- * Normaliza texto eliminando acentos y caracteres especiales
+ * Normaliza texto eliminando diacríticos y caracteres no seguros para el sistema de archivos.
+ * Utiliza la descomposición canónica Unicode (NFD) para cubrir todos los caracteres
+ * con marcas combinantes, en vez de un mapa manual limitado.
+ *
  * @param {string} text - Texto a normalizar
- * @return {string} Texto normalizado
+ * @return {string} Texto normalizado, seguro para nombres de archivo/carpeta
  */
 function normalizeText(text) {
   if (!text || typeof text !== 'string') return '';
 
-  // Mapa de caracteres especiales
-  const charMap = {
-    'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
-    'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U',
-    'ñ': 'n', 'Ñ': 'N',
-    'ü': 'u', 'Ü': 'U',
-    'ç': 'c', 'Ç': 'C',
-    'à': 'a', 'è': 'e', 'ì': 'i', 'ò': 'o', 'ù': 'u',
-    'À': 'A', 'È': 'E', 'Ì': 'I', 'Ò': 'O', 'Ù': 'U'
-  };
-
-  let normalized = text;
-
-  // Reemplazar caracteres especiales
-  for (const [special, normal] of Object.entries(charMap)) {
-    normalized = normalized.replace(new RegExp(special, 'g'), normal);
-  }
+  // NFD descompone los caracteres acentuados en base + marca combinante,
+  // y la regex elimina todas las marcas combinantes (rango U+0300–U+036F).
+  let normalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
   // Reemplazar caracteres no seguros para nombres de archivos/carpetas
   normalized = normalized.replace(/[\/*?"<>|:]/g, '_');
 
-  // Limitar longitud para evitar errores
+  // Limitar longitud para evitar errores del sistema de archivos
   if (normalized.length > 255) {
     normalized = normalized.substring(0, 255);
   }

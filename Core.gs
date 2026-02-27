@@ -2,13 +2,14 @@
  * Attach GMAIL - Core
  * ===============================================================
  *
- * Lógica principal de procesamiento de emails y adjuntos
+ * Lógica principal de procesamiento de emails y adjuntos.
+ * Orquesta el flujo de sincronización: busca correos no procesados,
+ * filtra por dominio y extensión, guarda los adjuntos en Drive
+ * y recopila estadísticas.
  *
- * @proyecto: Attach GMAIL
- * @versión: 1.1.0
- * @autor: https://github.com/686f6c61
- * @fecha: 2025-11-17
- * @licencia: MIT
+ * @proyecto Attach GMAIL
+ * @autor https://github.com/686f6c61
+ * @licencia MIT
  */
 
 // ============================================================================

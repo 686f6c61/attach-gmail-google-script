@@ -4,12 +4,12 @@
   <base target="_top">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attach GMAIL v1.1.0 - Configuración</title>
+  <title>Attach GMAIL - Configuración</title>
 
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ========================================================================
@@ -17,22 +17,48 @@
        ======================================================================== */
 
     :root {
-      --color-primary: #000000;
-      --color-secondary: #333333;
+      /* Paleta principal */
+      --color-primary: #1a73e8;
+      --color-primary-dark: #1557b0;
+      --color-primary-light: #e8f0fe;
+
+      /* Superficies */
       --color-background: #ffffff;
-      --color-surface: #fafafa;
-      --color-border: #e0e0e0;
-      --color-text-primary: #000000;
-      --color-text-secondary: #666666;
-      --color-hover: #f5f5f5;
-      --color-success: #000000;
-      --color-error: #000000;
+      --color-surface: #f8f9fa;
+      --color-surface-raised: #ffffff;
+      --color-border: #dadce0;
+      --color-border-light: #e8eaed;
+
+      /* Texto */
+      --color-text-primary: #202124;
+      --color-text-secondary: #5f6368;
+      --color-text-disabled: #9aa0a6;
+
+      /* Estados semánticos */
+      --color-success: #1e8e3e;
+      --color-success-light: #e6f4ea;
+      --color-warning: #e37400;
+      --color-warning-light: #fef7e0;
+      --color-error: #d93025;
+      --color-error-light: #fce8e6;
+
+      /* Hover */
+      --color-hover: #f1f3f4;
+
+      /* Espaciado y forma */
       --spacing: 8px;
-      --border-radius: 4px;
-      --shadow-1: 0 2px 4px rgba(0,0,0,0.1);
-      --shadow-2: 0 4px 8px rgba(0,0,0,0.15);
-      --shadow-3: 0 8px 16px rgba(0,0,0,0.2);
-      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-pill: 9999px;
+
+      /* Sombras */
+      --shadow-sm: 0 1px 2px rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+      --shadow-md: 0 1px 3px rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
+      --shadow-lg: 0 4px 8px rgba(60,64,67,0.3), 0 8px 16px 6px rgba(60,64,67,0.15);
+
+      /* Transición */
+      --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
@@ -42,7 +68,7 @@
     }
 
     body {
-      font-family: 'Roboto', Arial, sans-serif;
+      font-family: 'Inter', 'Roboto', Arial, sans-serif;
       background-color: var(--color-surface);
       color: var(--color-text-primary);
       line-height: 1.6;
@@ -51,30 +77,51 @@
     }
 
     /* ========================================================================
-       LAYOUT
+       APP BAR
        ======================================================================== */
 
     .app-bar {
       background-color: var(--color-primary);
-      color: var(--color-background);
+      color: #fff;
       padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-      box-shadow: var(--shadow-2);
+      box-shadow: var(--shadow-md);
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
-    .app-bar h1 {
-      font-size: 24px;
-      font-weight: 500;
+    .app-bar-inner {
+      max-width: 900px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      gap: calc(var(--spacing) * 2);
+      justify-content: space-between;
+    }
+
+    .app-bar h1 {
+      font-size: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: calc(var(--spacing) * 1.5);
     }
 
     .app-bar h1 .material-icons {
-      font-size: 28px;
+      font-size: 26px;
     }
+
+    .app-bar .version-badge {
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.8;
+      background: rgba(255,255,255,0.15);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    /* ========================================================================
+       LAYOUT
+       ======================================================================== */
 
     .container {
       max-width: 900px;
@@ -83,46 +130,73 @@
     }
 
     /* ========================================================================
-       CARD COMPONENT
+       CARD
        ======================================================================== */
 
     .card {
-      background-color: var(--color-background);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-1);
+      background-color: var(--color-surface-raised);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border-light);
       margin-bottom: calc(var(--spacing) * 3);
       overflow: hidden;
-      transition: var(--transition);
+      transition: box-shadow var(--transition);
     }
 
     .card:hover {
-      box-shadow: var(--shadow-2);
+      box-shadow: var(--shadow-sm);
     }
 
     .card-header {
       padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border-light);
       display: flex;
       align-items: center;
-      gap: calc(var(--spacing) * 2);
+      gap: calc(var(--spacing) * 1.5);
+      cursor: default;
     }
 
     .card-header .material-icons {
-      color: var(--color-text-secondary);
+      color: var(--color-primary);
+      font-size: 22px;
     }
 
     .card-header h2 {
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 15px;
+      font-weight: 600;
       flex: 1;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: var(--color-text-primary);
     }
 
     .card-content {
       padding: calc(var(--spacing) * 3);
     }
 
+    /* Card colapsable */
+    .card-header.collapsible {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .card-header.collapsible:hover {
+      background-color: var(--color-hover);
+    }
+
+    .card-header .collapse-icon {
+      transition: transform var(--transition);
+    }
+
+    .card-header.collapsed .collapse-icon {
+      transform: rotate(-90deg);
+    }
+
+    .card-content.collapsed {
+      display: none;
+    }
+
     /* ========================================================================
-       FORM COMPONENTS
+       FORM
        ======================================================================== */
 
     .form-group {
@@ -135,8 +209,8 @@
 
     .form-label {
       display: block;
-      font-size: 14px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 600;
       margin-bottom: calc(var(--spacing));
       color: var(--color-text-primary);
     }
@@ -145,28 +219,30 @@
       display: block;
       font-size: 12px;
       color: var(--color-text-secondary);
-      margin-top: calc(var(--spacing) / 2);
+      margin-top: calc(var(--spacing) * 0.75);
+      line-height: 1.5;
     }
 
     .form-input {
       width: 100%;
-      padding: calc(var(--spacing) * 1.5);
+      padding: 10px 12px;
       border: 1px solid var(--color-border);
-      border-radius: var(--border-radius);
+      border-radius: var(--radius-sm);
       font-size: 14px;
       font-family: inherit;
-      transition: var(--transition);
+      transition: border-color var(--transition), box-shadow var(--transition);
       background-color: var(--color-background);
+      color: var(--color-text-primary);
     }
 
     .form-input:focus {
       outline: none;
       border-color: var(--color-primary);
-      box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+      box-shadow: 0 0 0 2px var(--color-primary-light);
     }
 
     .form-input:hover:not(:focus) {
-      border-color: var(--color-secondary);
+      border-color: var(--color-text-secondary);
     }
 
     .form-row {
@@ -175,20 +251,28 @@
       gap: calc(var(--spacing) * 2);
     }
 
-    @media (max-width: 600px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
+    select.form-input {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235f6368' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 60px;
     }
 
     /* ========================================================================
-       CHECKBOX & RADIO
+       CHECKBOX Y RADIO
        ======================================================================== */
 
     .checkbox-group, .radio-group {
       display: flex;
       flex-direction: column;
-      gap: calc(var(--spacing) * 1.5);
+      gap: calc(var(--spacing));
     }
 
     .checkbox-label, .radio-label {
@@ -196,9 +280,10 @@
       align-items: center;
       gap: calc(var(--spacing) * 1.5);
       cursor: pointer;
-      padding: calc(var(--spacing) * 1.5);
-      border-radius: var(--border-radius);
-      transition: var(--transition);
+      padding: calc(var(--spacing) * 1.25) calc(var(--spacing) * 1.5);
+      border-radius: var(--radius-sm);
+      transition: background-color var(--transition);
+      font-size: 14px;
     }
 
     .checkbox-label:hover, .radio-label:hover {
@@ -206,54 +291,67 @@
     }
 
     input[type="checkbox"], input[type="radio"] {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       cursor: pointer;
-      border: 2px solid var(--color-border);
+      accent-color: var(--color-primary);
     }
 
     /* ========================================================================
-       CHIP SELECTOR (para tipos de archivo y frecuencias)
+       CHIPS
        ======================================================================== */
 
     .chip-group {
       display: flex;
       flex-wrap: wrap;
-      gap: calc(var(--spacing) * 1.5);
-      margin-top: calc(var(--spacing) * 1.5);
+      gap: calc(var(--spacing));
+      margin-top: calc(var(--spacing));
     }
 
     .chip {
       display: inline-flex;
       align-items: center;
-      gap: calc(var(--spacing));
-      padding: calc(var(--spacing)) calc(var(--spacing) * 2);
+      gap: 6px;
+      padding: 6px 14px;
       border: 1px solid var(--color-border);
-      border-radius: 16px;
-      font-size: 14px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all var(--transition);
       user-select: none;
       background-color: var(--color-background);
+      color: var(--color-text-primary);
     }
 
     .chip:hover {
       background-color: var(--color-hover);
-      border-color: var(--color-secondary);
+      border-color: var(--color-text-secondary);
     }
 
     .chip.selected {
       background-color: var(--color-primary);
-      color: var(--color-background);
+      color: #fff;
       border-color: var(--color-primary);
     }
 
     .chip .material-icons {
-      font-size: 18px;
+      font-size: 16px;
+    }
+
+    /* Chip removible */
+    .chip.removable .remove-chip {
+      margin-left: 2px;
+      font-size: 16px;
+      opacity: 0.7;
+      cursor: pointer;
+    }
+
+    .chip.removable .remove-chip:hover {
+      opacity: 1;
     }
 
     /* ========================================================================
-       BUTTONS
+       BOTONES
        ======================================================================== */
 
     .btn {
@@ -261,32 +359,30 @@
       align-items: center;
       justify-content: center;
       gap: calc(var(--spacing));
-      padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 3);
+      padding: 10px 20px;
       border: none;
-      border-radius: var(--border-radius);
+      border-radius: var(--radius-sm);
       font-size: 14px;
       font-weight: 500;
       font-family: inherit;
       cursor: pointer;
-      transition: var(--transition);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      box-shadow: var(--shadow-1);
-    }
-
-    .btn:hover {
-      box-shadow: var(--shadow-2);
-      transform: translateY(-1px);
+      transition: all var(--transition);
+      letter-spacing: 0.2px;
     }
 
     .btn:active {
-      transform: translateY(0);
-      box-shadow: var(--shadow-1);
+      transform: scale(0.98);
     }
 
     .btn-primary {
       background-color: var(--color-primary);
-      color: var(--color-background);
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-dark);
+      box-shadow: var(--shadow-md);
     }
 
     .btn-secondary {
@@ -296,7 +392,17 @@
     }
 
     .btn-secondary:hover {
-      background-color: var(--color-hover);
+      background-color: var(--color-primary-light);
+      border-color: var(--color-primary);
+    }
+
+    .btn-success {
+      background-color: var(--color-success);
+      color: #fff;
+    }
+
+    .btn-success:hover {
+      background-color: #1a7c37;
     }
 
     .btn-danger {
@@ -307,7 +413,8 @@
 
     .btn-danger:hover {
       background-color: var(--color-error);
-      color: var(--color-background);
+      color: #fff;
+      border-color: var(--color-error);
     }
 
     .btn:disabled {
@@ -316,98 +423,311 @@
       transform: none !important;
     }
 
+    .btn .material-icons {
+      font-size: 18px;
+    }
+
     .btn-group {
       display: flex;
-      gap: calc(var(--spacing) * 2);
+      gap: calc(var(--spacing) * 1.5);
       flex-wrap: wrap;
     }
 
     /* ========================================================================
-       STATUS / ALERT
+       TOAST / ALERTAS
        ======================================================================== */
 
-    .alert {
-      padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
-      border-radius: var(--border-radius);
-      margin-bottom: calc(var(--spacing) * 3);
+    .toast {
+      padding: calc(var(--spacing) * 1.5) calc(var(--spacing) * 2);
+      border-radius: var(--radius-md);
+      margin-bottom: calc(var(--spacing) * 2);
       display: none;
-      align-items: start;
-      gap: calc(var(--spacing) * 2);
+      align-items: flex-start;
+      gap: calc(var(--spacing) * 1.5);
       animation: slideIn 0.3s ease-out;
+      border-left: 4px solid transparent;
     }
 
-    .alert.show {
-      display: flex;
+    .toast.show { display: flex; }
+
+    .toast-success {
+      background-color: var(--color-success-light);
+      border-left-color: var(--color-success);
+      color: var(--color-success);
     }
 
-    .alert-success {
-      background-color: var(--color-primary);
-      color: var(--color-background);
-      border-left: 4px solid var(--color-background);
-    }
-
-    .alert-error {
-      background-color: #f5f5f5;
+    .toast-error {
+      background-color: var(--color-error-light);
+      border-left-color: var(--color-error);
       color: var(--color-error);
-      border-left: 4px solid var(--color-error);
     }
 
-    .alert .material-icons {
-      font-size: 24px;
+    .toast-warning {
+      background-color: var(--color-warning-light);
+      border-left-color: var(--color-warning);
+      color: var(--color-warning);
     }
 
-    .alert-content {
+    .toast .material-icons { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+
+    .toast-content {
       flex: 1;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--color-text-primary);
     }
+
+    .toast-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: var(--color-text-secondary);
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .toast-close:hover { color: var(--color-text-primary); }
 
     @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ========================================================================
-       DANGER ZONE
+       MODAL
+       ======================================================================== */
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      padding: calc(var(--spacing) * 3);
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: var(--color-background);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      max-width: 640px;
+      width: 100%;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      animation: modalIn 0.25s ease-out;
+    }
+
+    .modal-header {
+      padding: calc(var(--spacing) * 2.5) calc(var(--spacing) * 3);
+      border-bottom: 1px solid var(--color-border-light);
+      display: flex;
+      align-items: center;
+      gap: calc(var(--spacing) * 1.5);
+    }
+
+    .modal-header h3 {
+      font-size: 18px;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .modal-header .material-icons { color: var(--color-primary); }
+
+    .modal-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      padding: 4px;
+      border-radius: var(--radius-sm);
+    }
+
+    .modal-close:hover {
+      background-color: var(--color-hover);
+      color: var(--color-text-primary);
+    }
+
+    .modal-body {
+      padding: calc(var(--spacing) * 3);
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+      border-top: 1px solid var(--color-border-light);
+      display: flex;
+      justify-content: flex-end;
+      gap: calc(var(--spacing));
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(-16px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Estadísticas del modal */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: calc(var(--spacing) * 2);
+      margin-bottom: calc(var(--spacing) * 3);
+    }
+
+    .stat-card {
+      padding: calc(var(--spacing) * 2);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      text-align: center;
+    }
+
+    .stat-card .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--color-primary);
+    }
+
+    .stat-card .stat-label {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-top: 4px;
+    }
+
+    .stat-card.success .stat-value { color: var(--color-success); }
+    .stat-card.error .stat-value   { color: var(--color-error); }
+    .stat-card.warning .stat-value { color: var(--color-warning); }
+
+    .detail-section {
+      margin-top: calc(var(--spacing) * 2);
+    }
+
+    .detail-section h4 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: calc(var(--spacing));
+      letter-spacing: 0.5px;
+    }
+
+    .detail-list {
+      list-style: none;
+    }
+
+    .detail-list li {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--color-border-light);
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .detail-list li:last-child { border-bottom: none; }
+
+    .detail-list .count {
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    /* ========================================================================
+       ZONA DE PELIGRO
        ======================================================================== */
 
     .danger-zone {
-      border: 2px solid var(--color-error);
-      border-radius: var(--border-radius);
-      margin-top: calc(var(--spacing) * 4);
+      border: 1px solid var(--color-error);
+      border-radius: var(--radius-md);
     }
 
     .danger-zone .card-header {
-      background-color: var(--color-error);
-      color: var(--color-background);
-      border-bottom: none;
+      background-color: var(--color-error-light);
+      border-bottom: 1px solid var(--color-error);
+    }
+
+    .danger-zone .card-header .material-icons {
+      color: var(--color-error);
+    }
+
+    .danger-zone .card-header h2 {
+      color: var(--color-error);
     }
 
     .danger-action {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: calc(var(--spacing) * 2);
-      border-bottom: 1px solid var(--color-border);
+      padding: calc(var(--spacing) * 2) calc(var(--spacing) * 3);
+      border-bottom: 1px solid var(--color-border-light);
+      gap: calc(var(--spacing) * 2);
     }
 
-    .danger-action:last-child {
-      border-bottom: none;
-    }
+    .danger-action:last-child { border-bottom: none; }
 
     .danger-action-info h3 {
       font-size: 14px;
-      font-weight: 500;
-      margin-bottom: calc(var(--spacing) / 2);
+      font-weight: 600;
+      margin-bottom: 2px;
     }
 
     .danger-action-info p {
       font-size: 12px;
       color: var(--color-text-secondary);
+    }
+
+    /* ========================================================================
+       PANEL DE LOGS
+       ======================================================================== */
+
+    .log-entry {
+      padding: calc(var(--spacing) * 1.5);
+      border-radius: var(--radius-sm);
+      margin-bottom: calc(var(--spacing));
+      font-size: 13px;
+      font-family: 'Roboto Mono', monospace;
+      border-left: 3px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .log-entry.log-error {
+      border-left-color: var(--color-error);
+      background: var(--color-error-light);
+    }
+
+    .log-entry .log-time {
+      font-size: 11px;
+      color: var(--color-text-disabled);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .log-entry .log-message {
+      color: var(--color-text-primary);
+      word-break: break-word;
+    }
+
+    .log-empty {
+      text-align: center;
+      padding: calc(var(--spacing) * 4);
+      color: var(--color-text-secondary);
+    }
+
+    .log-empty .material-icons {
+      font-size: 40px;
+      display: block;
+      margin-bottom: calc(var(--spacing));
+      color: var(--color-text-disabled);
     }
 
     /* ========================================================================
@@ -418,8 +738,8 @@
       text-align: center;
       padding: calc(var(--spacing) * 4) calc(var(--spacing) * 2);
       color: var(--color-text-secondary);
-      font-size: 14px;
-      border-top: 1px solid var(--color-border);
+      font-size: 13px;
+      border-top: 1px solid var(--color-border-light);
       margin-top: calc(var(--spacing) * 4);
     }
 
@@ -429,22 +749,24 @@
       font-weight: 500;
     }
 
-    .footer a:hover {
-      text-decoration: underline;
-    }
+    .footer a:hover { text-decoration: underline; }
 
     /* ========================================================================
-       LOADING SPINNER
+       SPINNER
        ======================================================================== */
 
     .spinner {
       display: inline-block;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       border: 2px solid var(--color-border);
       border-top-color: var(--color-primary);
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
+    }
+
+    .btn .spinner {
+      border-top-color: #fff;
     }
 
     @keyframes spin {
@@ -452,152 +774,286 @@
     }
 
     /* ========================================================================
-       UTILITIES
+       UTILIDADES
        ======================================================================== */
 
-    .hidden {
-      display: none !important;
-    }
-
-    .text-muted {
-      color: var(--color-text-secondary);
-    }
+    .hidden { display: none !important; }
+    .text-muted { color: var(--color-text-secondary); }
 
     .divider {
       height: 1px;
-      background-color: var(--color-border);
+      background-color: var(--color-border-light);
       margin: calc(var(--spacing) * 3) 0;
+    }
+
+    .info-box {
+      background: var(--color-primary-light);
+      border-radius: var(--radius-sm);
+      padding: calc(var(--spacing) * 2);
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: calc(var(--spacing) * 2);
+    }
+
+    .info-box strong { color: var(--color-text-primary); }
+
+    .conditional-section {
+      margin-top: calc(var(--spacing) * 2);
+      padding-top: calc(var(--spacing) * 2);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    /* ========================================================================
+       RESPONSIVE
+       ======================================================================== */
+
+    @media (max-width: 768px) {
+      .container {
+        padding: calc(var(--spacing) * 2);
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .danger-action {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: calc(var(--spacing) * 1.5);
+      }
+
+      .danger-action .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-bar h1 { font-size: 16px; }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn-group .btn {
+        width: 100%;
+      }
+
+      .modal {
+        max-height: 90vh;
+        margin: calc(var(--spacing));
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- App Bar -->
+  <!-- ===================================================================
+       APP BAR
+       =================================================================== -->
   <div class="app-bar">
-    <h1>
-      <span class="material-icons">attachment</span>
-      Attach GMAIL v1.1.0
-    </h1>
+    <div class="app-bar-inner">
+      <h1>
+        <span class="material-icons">attachment</span>
+        Attach GMAIL
+      </h1>
+      <span class="version-badge" id="versionBadge">--</span>
+    </div>
   </div>
 
-  <!-- Main Container -->
+  <!-- ===================================================================
+       CONTENEDOR PRINCIPAL
+       =================================================================== -->
   <div class="container">
 
-    <!-- Status Alert -->
-    <div id="statusAlert" class="alert">
-      <span class="material-icons" id="statusIcon"></span>
-      <div class="alert-content" id="statusMessage"></div>
+    <!-- Toast de estado -->
+    <div id="toast" class="toast">
+      <span class="material-icons" id="toastIcon"></span>
+      <div class="toast-content" id="toastMessage"></div>
+      <button class="toast-close" onclick="closeToast()">
+        <span class="material-icons">close</span>
+      </button>
     </div>
 
-    <!-- Configuración de Sincronización -->
+    <!-- =================================================================
+         CONFIGURACION DE SINCRONIZACION
+         ================================================================= -->
     <div class="card">
       <div class="card-header">
         <span class="material-icons">settings</span>
-        <h2>CONFIGURACIÓN DE SINCRONIZACIÓN</h2>
+        <h2>Configuración de sincronización</h2>
       </div>
       <div class="card-content">
         <div class="form-group">
-          <label class="form-label" for="mainFolder">Nombre de Carpeta Principal</label>
+          <label class="form-label" for="mainFolder">Nombre de carpeta principal</label>
           <input type="text" id="mainFolder" class="form-input" placeholder="Adjuntos Mail">
           <span class="form-help">Carpeta raíz en Google Drive donde se guardarán los adjuntos</span>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="labelName">Etiqueta de Correos Procesados</label>
+          <label class="form-label" for="labelName">Etiqueta de correos procesados</label>
           <input type="text" id="labelName" class="form-input" placeholder="AdjuntosSincronizados">
           <span class="form-help">Etiqueta de Gmail para marcar correos ya procesados</span>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label" for="maxEmails">Correos por Ejecución</label>
+            <label class="form-label" for="maxEmails">Correos por ejecución</label>
             <input type="number" id="maxEmails" class="form-input" min="1" max="500" placeholder="50">
-            <span class="form-help">Máximo de correos a procesar en cada ejecución</span>
+            <span class="form-help">Máximo de correos a procesar en cada ejecución (1-500)</span>
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="daysBack">Días Hacia Atrás</label>
+            <label class="form-label" for="daysBack">Días hacia atrás</label>
             <input type="number" id="daysBack" class="form-input" min="0" placeholder="0">
             <span class="form-help">0 = sin límite de tiempo</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Organización por usuario -->
+        <div class="form-group">
+          <label class="form-label">Organización de carpetas</label>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="usarNombreUsuario">
+              <span>Usar nombre de usuario como carpeta raíz (en vez del nombre personalizado)</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="usarNombreDominiosGenericos">
+              <span>Crear subcarpetas usuario@dominio para proveedores genéricos (Gmail, Outlook...)</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="dominiosGenericosSection" class="hidden">
+          <div class="form-group">
+            <label class="form-label" for="dominiosGenericos">Dominios genéricos</label>
+            <input type="text" id="dominiosGenericos" class="form-input"
+                   placeholder="gmail.com, outlook.com, yahoo.com, hotmail.com, protonmail.com">
+            <span class="form-help">Separados por comas. Los correos de estos dominios se organizarán con usuario@dominio</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Filtrado por Dominios -->
+    <!-- =================================================================
+         PATRONES DE ASUNTO
+         ================================================================= -->
     <div class="card">
-      <div class="card-header">
-        <span class="material-icons">filter_list</span>
-        <h2>FILTRADO POR DOMINIOS</h2>
+      <div class="card-header collapsible" onclick="toggleCollapse(this)">
+        <span class="material-icons">label</span>
+        <h2>Patrones de asunto</h2>
+        <span class="material-icons collapse-icon">expand_more</span>
       </div>
-      <div class="card-content">
-        <p style="margin-bottom: 16px; color: var(--color-text-secondary); line-height: 1.5;">
+      <div class="card-content collapsed">
+        <div class="info-box">
+          <strong>¿Qué son los patrones de asunto?</strong> Cuando esta opción está activa, el sistema busca
+          identificadores en el asunto del correo (p. ej. «FACT-2024», «PEDIDO-001») y crea carpetas
+          agrupando todos los correos con el mismo identificador. Útil para proyectos, facturas o tickets.
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="usarPatronesAsunto">
+            <span>Activar agrupación por patrones de asunto</span>
+          </label>
+        </div>
+
+        <div id="patronesSection" class="hidden">
+          <div class="form-group">
+            <label class="form-label" for="patronesInput">Patrones a buscar</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="patronesInput" class="form-input" placeholder="FACT-, PEDIDO-, PRJ-"
+                     style="flex: 1;">
+            </div>
+            <span class="form-help">Separados por comas. El sistema buscará estos prefijos en el asunto del correo</span>
+            <div class="chip-group" id="patronesChips"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================
+         FILTRADO POR DOMINIOS
+         ================================================================= -->
+    <div class="card">
+      <div class="card-header collapsible" onclick="toggleCollapse(this)">
+        <span class="material-icons">filter_list</span>
+        <h2>Filtrado por dominios</h2>
+        <span class="material-icons collapse-icon">expand_more</span>
+      </div>
+      <div class="card-content collapsed">
+        <div class="info-box">
           <strong>¿Qué son los dominios?</strong> El dominio es la parte del correo electrónico después de la @.
           Por ejemplo, en <em>contacto@empresa.com</em>, el dominio es <strong>empresa.com</strong>.
           Usa estos filtros para procesar solo correos de remitentes específicos o bloquear dominios no deseados.
-        </p>
+        </div>
 
         <div class="form-group">
-          <label class="form-label" for="dominiosIncluidos">Dominios a Incluir</label>
+          <label class="form-label" for="dominiosIncluidos">Dominios a incluir</label>
           <input type="text" id="dominiosIncluidos" class="form-input" placeholder="ejemplo.com, empresa.com, cliente.es">
           <span class="form-help">
-            <strong>Ejemplo:</strong> <em>empresa.com, proveedor.es, *.subdominio.com</em><br>
-            Separados por comas. Si está vacío, se procesarán todos los dominios excepto los excluidos.
+            Separados por comas. Soporta wildcards: <em>*.subdominio.com</em>.
+            Si está vacío, se procesarán todos los dominios excepto los excluidos.
           </span>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="dominiosExcluidos">Dominios a Excluir</label>
+          <label class="form-label" for="dominiosExcluidos">Dominios a excluir</label>
           <input type="text" id="dominiosExcluidos" class="form-input" placeholder="spam.com, publicidad.com, noreply.com">
           <span class="form-help">
-            <strong>Ejemplo:</strong> <em>spam.com, publicidad.net, noreply.com</em><br>
             Separados por comas. Los dominios excluidos tienen prioridad sobre los incluidos.
           </span>
         </div>
       </div>
     </div>
 
-    <!-- Filtrado por Tipo de Archivo -->
+    <!-- =================================================================
+         FILTRADO POR TIPO DE ARCHIVO
+         ================================================================= -->
     <div class="card">
-      <div class="card-header">
+      <div class="card-header collapsible" onclick="toggleCollapse(this)">
         <span class="material-icons">insert_drive_file</span>
-        <h2>FILTRADO POR TIPO DE ARCHIVO</h2>
+        <h2>Filtrado por tipo de archivo</h2>
+        <span class="material-icons collapse-icon">expand_more</span>
       </div>
-      <div class="card-content">
+      <div class="card-content collapsed">
         <div class="form-group">
-          <label class="form-label">Tipos de Archivo Comunes</label>
+          <label class="form-label">Tipos de archivo comunes</label>
           <div class="chip-group">
             <div class="chip" data-ext="pdf">
-              <span class="material-icons">picture_as_pdf</span>
-              PDF
+              <span class="material-icons">picture_as_pdf</span> PDF
             </div>
             <div class="chip" data-ext="doc,docx">
-              <span class="material-icons">description</span>
-              Word
+              <span class="material-icons">description</span> Word
             </div>
             <div class="chip" data-ext="xls,xlsx">
-              <span class="material-icons">table_chart</span>
-              Excel
+              <span class="material-icons">table_chart</span> Excel
             </div>
             <div class="chip" data-ext="ppt,pptx">
-              <span class="material-icons">slideshow</span>
-              PowerPoint
+              <span class="material-icons">slideshow</span> PowerPoint
             </div>
             <div class="chip" data-ext="zip,rar,7z">
-              <span class="material-icons">folder_zip</span>
-              Comprimidos
+              <span class="material-icons">folder_zip</span> Comprimidos
             </div>
             <div class="chip" data-ext="jpg,jpeg,png,gif">
-              <span class="material-icons">image</span>
-              Imágenes
+              <span class="material-icons">image</span> Imágenes
             </div>
             <div class="chip" data-ext="mp4,avi,mov">
-              <span class="material-icons">videocam</span>
-              Videos
+              <span class="material-icons">videocam</span> Vídeos
             </div>
             <div class="chip" data-ext="txt,csv">
-              <span class="material-icons">text_snippet</span>
-              Texto
+              <span class="material-icons">text_snippet</span> Texto
             </div>
           </div>
         </div>
@@ -605,31 +1061,33 @@
         <div class="divider"></div>
 
         <div class="form-group">
-          <label class="form-label" for="extensionesPermitidas">Extensiones Permitidas</label>
+          <label class="form-label" for="extensionesPermitidas">Extensiones permitidas</label>
           <input type="text" id="extensionesPermitidas" class="form-input" placeholder="pdf, docx, xlsx">
           <span class="form-help">Separadas por comas. Dejar en blanco para incluir todas</span>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="extensionesExcluidas">Extensiones Excluidas</label>
+          <label class="form-label" for="extensionesExcluidas">Extensiones excluidas</label>
           <input type="text" id="extensionesExcluidas" class="form-input" placeholder="exe, ics">
-          <span class="form-help">Separadas por comas. Prioridad sobre las permitidas</span>
+          <span class="form-help">Separadas por comas. Tienen prioridad sobre las permitidas</span>
         </div>
       </div>
     </div>
 
-    <!-- Notificaciones -->
+    <!-- =================================================================
+         NOTIFICACIONES
+         ================================================================= -->
     <div class="card">
-      <div class="card-header">
+      <div class="card-header collapsible" onclick="toggleCollapse(this)">
         <span class="material-icons">notifications</span>
-        <h2>NOTIFICACIONES</h2>
+        <h2>Notificaciones</h2>
+        <span class="material-icons collapse-icon">expand_more</span>
       </div>
-      <div class="card-content">
-        <p style="margin-bottom: 16px; color: var(--color-text-secondary); line-height: 1.5;">
-          <strong>¿Qué son las notificaciones?</strong> El sistema puede enviarte un resumen automático por correo electrónico
-          con las estadísticas de sincronización: cuántos correos se procesaron, adjuntos guardados, errores, etc.
-          Puedes elegir la frecuencia (diaria, semanal, mensual) y el nivel de detalle del resumen.
-        </p>
+      <div class="card-content collapsed">
+        <div class="info-box">
+          <strong>¿Qué son las notificaciones?</strong> El sistema puede enviarte un resumen automático por correo
+          electrónico con las estadísticas de sincronización: correos procesados, adjuntos guardados, errores, etc.
+        </div>
 
         <div class="form-group">
           <label class="checkbox-label">
@@ -639,82 +1097,218 @@
         </div>
 
         <div id="notificationSettings" class="hidden">
-          <div class="form-group">
-            <label class="form-label" for="emailNotificacion">Correo Electrónico de Destino</label>
-            <input type="email" id="emailNotificacion" class="form-input" placeholder="tu-email@gmail.com">
-            <span class="form-help">
-              <strong>Opcional.</strong> Deja en blanco para usar tu email de Google actual.<br>
-              <strong>Caso de uso:</strong> Tienes una cuenta que recibe facturas pero no la monitorizas a diario.
-              Configura este email con tu cuenta personal para recibir notificaciones cuando lleguen nuevos PDF u otros archivos,
-              manteniéndolos ordenados automáticamente en Drive sin revisar la cuenta secundaria constantemente.
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label">Frecuencia de Notificaciones</label>
-            <div class="chip-group">
-              <div class="chip" data-freq="diaria">Diaria</div>
-              <div class="chip" data-freq="semanal">Semanal</div>
-              <div class="chip" data-freq="quincenal">Quincenal</div>
-              <div class="chip" data-freq="mensual">Mensual</div>
-              <div class="chip" data-freq="nunca">Nunca</div>
+          <div class="conditional-section">
+            <div class="form-group">
+              <label class="form-label" for="emailNotificacion">Correo electrónico de destino</label>
+              <input type="email" id="emailNotificacion" class="form-input" placeholder="tu-email@gmail.com">
+              <span class="form-help">
+                Opcional. Deja en blanco para usar tu email de Google actual.
+                Útil si quieres monitorizar una cuenta secundaria.
+              </span>
             </div>
-            <span class="form-help" style="display: block; margin-top: 8px;">
-              <strong>Ejemplo:</strong> Si eliges <em>Semanal</em>, recibirás un resumen cada 7 días con todas las sincronizaciones.
-            </span>
-          </div>
 
-          <div class="form-group">
-            <label class="form-label">Nivel de Detalle</label>
-            <div class="radio-group">
-              <label class="radio-label">
-                <input type="radio" name="detalle" value="basico" checked>
-                <span><strong>Básico</strong> - Solo resumen de correos y adjuntos</span>
-              </label>
-              <label class="radio-label">
-                <input type="radio" name="detalle" value="detallado">
-                <span><strong>Detallado</strong> - Incluye estadísticas por dominio y tipo de archivo</span>
-              </label>
+            <div class="form-group">
+              <label class="form-label">Frecuencia</label>
+              <div class="chip-group">
+                <div class="chip" data-freq="diaria">Diaria</div>
+                <div class="chip" data-freq="semanal">Semanal</div>
+                <div class="chip" data-freq="quincenal">Quincenal</div>
+                <div class="chip" data-freq="mensual">Mensual</div>
+                <div class="chip" data-freq="nunca">Nunca</div>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label class="form-label" for="mensajePersonalizado">Mensaje Personalizado (Opcional)</label>
-            <textarea id="mensajePersonalizado" class="form-input" rows="3" placeholder="Escribe un mensaje personalizado que aparecerá al inicio de cada notificación..."></textarea>
-            <span class="form-help">
-              <strong>Ejemplo:</strong> <em>"Resumen de sincronización del proyecto XYZ"</em> o <em>"Backup automático de facturas"</em>
-            </span>
+            <div class="form-group">
+              <label class="form-label">Nivel de detalle</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="detalle" value="basico" checked>
+                  <span><strong>Básico</strong> -- solo resumen de correos y adjuntos</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="detalle" value="detallado">
+                  <span><strong>Detallado</strong> -- incluye estadísticas por dominio y tipo de archivo</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="mensajePersonalizado">Mensaje personalizado (opcional)</label>
+              <textarea id="mensajePersonalizado" class="form-input" rows="2"
+                        placeholder="Escribe un mensaje que aparecerá al inicio de cada notificación..."></textarea>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Acciones Principales -->
+    <!-- =================================================================
+         AUTOMATIZACION (TRIGGERS)
+         ================================================================= -->
+    <div class="card">
+      <div class="card-header collapsible" onclick="toggleCollapse(this)">
+        <span class="material-icons">schedule</span>
+        <h2>Automatización</h2>
+        <span class="material-icons collapse-icon">expand_more</span>
+      </div>
+      <div class="card-content collapsed">
+        <div class="info-box">
+          <strong>¿Qué es la automatización?</strong> Configura un disparador (trigger) para que la
+          sincronización se ejecute periódicamente sin intervención manual. Puedes elegir
+          frecuencia horaria, diaria o semanal.
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="triggerActivado">
+            <span>Activar sincronización automática</span>
+          </label>
+        </div>
+
+        <div id="triggerSettings" class="hidden">
+          <div class="conditional-section">
+            <div class="form-group">
+              <label class="form-label" for="triggerFrecuencia">Frecuencia</label>
+              <select id="triggerFrecuencia" class="form-input">
+                <option value="horaria">Horaria</option>
+                <option value="diaria" selected>Diaria</option>
+                <option value="semanal">Semanal</option>
+              </select>
+            </div>
+
+            <!-- Campos condicionales según frecuencia -->
+            <div id="triggerHoraria" class="form-group hidden">
+              <label class="form-label" for="triggerIntervaloHoras">Intervalo (horas)</label>
+              <select id="triggerIntervaloHoras" class="form-input">
+                <option value="1">Cada hora</option>
+                <option value="2">Cada 2 horas</option>
+                <option value="4">Cada 4 horas</option>
+                <option value="6">Cada 6 horas</option>
+                <option value="8">Cada 8 horas</option>
+                <option value="12">Cada 12 horas</option>
+              </select>
+            </div>
+
+            <div id="triggerHoraDia" class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="triggerHora">Hora de ejecución</label>
+                <select id="triggerHora" class="form-input">
+                  <option value="0">00:00</option>
+                  <option value="1">01:00</option>
+                  <option value="2">02:00</option>
+                  <option value="3">03:00</option>
+                  <option value="4">04:00</option>
+                  <option value="5">05:00</option>
+                  <option value="6">06:00</option>
+                  <option value="7">07:00</option>
+                  <option value="8" selected>08:00</option>
+                  <option value="9">09:00</option>
+                  <option value="10">10:00</option>
+                  <option value="11">11:00</option>
+                  <option value="12">12:00</option>
+                  <option value="13">13:00</option>
+                  <option value="14">14:00</option>
+                  <option value="15">15:00</option>
+                  <option value="16">16:00</option>
+                  <option value="17">17:00</option>
+                  <option value="18">18:00</option>
+                  <option value="19">19:00</option>
+                  <option value="20">20:00</option>
+                  <option value="21">21:00</option>
+                  <option value="22">22:00</option>
+                  <option value="23">23:00</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="triggerDiaSemana" style="display: none;">
+                <label class="form-label" for="triggerDia">Día de la semana</label>
+                <select id="triggerDia" class="form-input">
+                  <option value="2">Lunes</option>
+                  <option value="3">Martes</option>
+                  <option value="4">Miércoles</option>
+                  <option value="5">Jueves</option>
+                  <option value="6">Viernes</option>
+                  <option value="7">Sábado</option>
+                  <option value="1">Domingo</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+              <button id="applyTriggerBtn" class="btn btn-success" onclick="handleApplyTrigger()">
+                <span class="material-icons">check</span>
+                Aplicar automatización
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================
+         ACCIONES PRINCIPALES
+         ================================================================= -->
     <div class="card">
       <div class="card-content">
         <div class="btn-group">
           <button id="saveBtn" class="btn btn-primary">
             <span class="material-icons">save</span>
-            Guardar Configuración
+            Guardar configuración
           </button>
           <button id="testBtn" class="btn btn-secondary">
             <span class="material-icons">play_arrow</span>
-            Ejecutar Prueba
+            Ejecutar prueba
+          </button>
+          <button id="pendingBtn" class="btn btn-secondary" onclick="handleCheckPending()">
+            <span class="material-icons">pending_actions</span>
+            Ver pendientes
           </button>
         </div>
       </div>
     </div>
 
-    <!-- Zona de Peligro -->
-    <div class="card danger-zone">
-      <div class="card-header">
-        <span class="material-icons">warning</span>
-        <h2>ZONA DE PELIGRO</h2>
+    <!-- =================================================================
+         LOGS DE ERRORES
+         ================================================================= -->
+    <div class="card">
+      <div class="card-header collapsible" onclick="toggleCollapse(this)">
+        <span class="material-icons">bug_report</span>
+        <h2>Registro de errores</h2>
+        <span class="material-icons collapse-icon">expand_more</span>
       </div>
-      <div class="card-content" style="padding: 0;">
+      <div class="card-content collapsed">
+        <div class="btn-group" style="margin-bottom: 16px;">
+          <button class="btn btn-secondary" onclick="handleLoadLogs()">
+            <span class="material-icons">refresh</span>
+            Cargar logs
+          </button>
+          <button class="btn btn-danger" onclick="handleClearLogs()">
+            <span class="material-icons">delete_sweep</span>
+            Limpiar logs
+          </button>
+        </div>
+        <div id="logsContainer">
+          <div class="log-empty">
+            <span class="material-icons">inbox</span>
+            Pulsa «Cargar logs» para ver los últimos errores registrados
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================
+         ZONA DE PELIGRO
+         ================================================================= -->
+    <div class="card danger-zone">
+      <div class="card-header collapsible" onclick="toggleCollapse(this)">
+        <span class="material-icons">warning</span>
+        <h2>Zona de peligro</h2>
+        <span class="material-icons collapse-icon">expand_more</span>
+      </div>
+      <div class="card-content collapsed" style="padding: 0;">
         <div class="danger-action">
           <div class="danger-action-info">
-            <h3>RESTABLECER CONFIGURACIÓN</h3>
+            <h3>Restablecer configuración</h3>
             <p>Restaura todos los valores a sus ajustes predeterminados</p>
           </div>
           <button id="resetBtn" class="btn btn-secondary">
@@ -725,23 +1319,34 @@
 
         <div class="danger-action">
           <div class="danger-action-info">
-            <h3>ELIMINAR CARPETA PRINCIPAL</h3>
-            <p>Elimina la carpeta de adjuntos (se moverá a la papelera)</p>
+            <h3>Eliminar carpeta principal</h3>
+            <p>Mueve la carpeta de adjuntos a la papelera de Drive</p>
           </div>
           <button id="eliminarCarpetaBtn" class="btn btn-danger">
             <span class="material-icons">delete</span>
-            Eliminar Carpeta
+            Eliminar
           </button>
         </div>
 
         <div class="danger-action">
           <div class="danger-action-info">
-            <h3>RESETEAR ETIQUETAS</h3>
+            <h3>Resetear etiquetas</h3>
             <p>Elimina las etiquetas de procesado para reprocesar correos</p>
           </div>
           <button id="resetearEtiquetasBtn" class="btn btn-danger">
             <span class="material-icons">label_off</span>
-            Resetear Etiquetas
+            Resetear
+          </button>
+        </div>
+
+        <div class="danger-action">
+          <div class="danger-action-info">
+            <h3>Desactivar automatización</h3>
+            <p>Elimina todos los triggers de sincronización automática</p>
+          </div>
+          <button class="btn btn-danger" onclick="handleDisableTrigger()">
+            <span class="material-icons">timer_off</span>
+            Desactivar
           </button>
         </div>
       </div>
@@ -751,91 +1356,386 @@
     <div class="footer">
       <p>
         Desarrollado por <a href="https://github.com/686f6c61" target="_blank">686f6c61</a>
-        •
+        &middot;
         <a href="https://github.com/686f6c61/attach-gmail-google-script" target="_blank">Ver en GitHub</a>
-        •
-        v1.1.0
+        &middot;
+        <span id="footerVersion">--</span>
       </p>
     </div>
   </div>
 
+  <!-- ===================================================================
+       MODAL DE RESULTADOS
+       =================================================================== -->
+  <div class="modal-overlay" id="resultModal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="material-icons">assessment</span>
+        <h3>Resultado de la prueba</h3>
+        <button class="modal-close" onclick="closeModal()">
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Se rellena dinámicamente -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="closeModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       JAVASCRIPT
+       =================================================================== -->
   <script>
     // =========================================================================
-    // ESTADO DE LA APLICACIÓN
+    // ESTADO
     // =========================================================================
 
     const AppState = {
       config: null,
-      loading: false
+      loading: false,
+      toastTimeout: null
     };
 
     // =========================================================================
-    // UTILIDADES
+    // TOAST
     // =========================================================================
 
-    function showStatus(message, isSuccess) {
-      const alert = document.getElementById('statusAlert');
-      const icon = document.getElementById('statusIcon');
-      const messageEl = document.getElementById('statusMessage');
+    /**
+     * Muestra un toast con un mensaje y un tipo semántico.
+     * @param {string} message - Texto a mostrar
+     * @param {'success'|'error'|'warning'} type - Tipo de toast
+     */
+    function showToast(message, type) {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toastIcon');
+      const msg = document.getElementById('toastMessage');
 
-      alert.className = isSuccess ? 'alert alert-success show' : 'alert alert-error show';
-      icon.textContent = isSuccess ? 'check_circle' : 'error';
-      messageEl.textContent = message;
+      const icons = { success: 'check_circle', error: 'error', warning: 'warning' };
+      const classes = { success: 'toast-success', error: 'toast-error', warning: 'toast-warning' };
 
-      // Auto-ocultar después de 5 segundos
-      setTimeout(() => {
-        alert.classList.remove('show');
-      }, 5000);
+      toast.className = `toast ${classes[type] || classes.warning} show`;
+      icon.textContent = icons[type] || icons.warning;
+      msg.textContent = message;
+
+      // Cancelar timeout anterior
+      if (AppState.toastTimeout) clearTimeout(AppState.toastTimeout);
+
+      AppState.toastTimeout = setTimeout(closeToast, 8000);
+    }
+
+    /** Cierra el toast manualmente. */
+    function closeToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.remove('show');
+      if (AppState.toastTimeout) clearTimeout(AppState.toastTimeout);
     }
 
     function showError(error) {
-      showStatus('Error: ' + error.message, false);
+      showToast('Error: ' + (error.message || error), 'error');
     }
 
+    // =========================================================================
+    // MODAL DE RESULTADOS
+    // =========================================================================
+
+    /**
+     * Muestra el informe de prueba en un modal con estadísticas visuales.
+     * Sustituye el antiguo alert() nativo.
+     * @param {Object} result - Resultado de testSync
+     */
     function showTestReport(result) {
-      // Construir informe detallado
-      let report = '✓ PRUEBA COMPLETADA EXITOSAMENTE\n\n';
-      report += '═══════════════════════════════════\n';
-      report += 'RESUMEN\n';
-      report += '═══════════════════════════════════\n';
-      report += `• Correos procesados: ${result.correosProcesados}\n`;
-      report += `• Adjuntos guardados: ${result.adjuntosGuardados}\n`;
-      report += `• Errores encontrados: ${result.errores}\n`;
-      report += `• Tiempo de ejecución: ${result.tiempoTotal}s\n`;
-      report += `• Correos pendientes: ${result.correosPendientes}\n`;
+      const body = document.getElementById('modalBody');
+
+      // Estadísticas principales
+      let html = '<div class="stat-grid">';
+      html += buildStatCard(result.correosProcesados, 'Correos procesados', '');
+      html += buildStatCard(result.adjuntosGuardados, 'Adjuntos guardados', 'success');
+      html += buildStatCard(result.errores, 'Errores', result.errores > 0 ? 'error' : '');
+      html += buildStatCard(result.tiempoTotal + 's', 'Tiempo total', '');
+      html += '</div>';
+
+      // Correos pendientes
+      if (result.correosPendientes > 0) {
+        html += `<div class="info-box" style="margin-bottom: 16px;">
+          Quedan <strong>${result.correosPendientes}</strong> correos pendientes por procesar.
+        </div>`;
+      }
 
       // Dominios procesados
-      const dominios = Object.keys(result.dominiosProcesados || {});
+      const dominios = Object.entries(result.dominiosProcesados || {});
       if (dominios.length > 0) {
-        report += '\n═══════════════════════════════════\n';
-        report += 'DOMINIOS PROCESADOS\n';
-        report += '═══════════════════════════════════\n';
-        dominios.forEach(dominio => {
-          report += `• ${dominio}: ${result.dominiosProcesados[dominio]} correo(s)\n`;
+        html += '<div class="detail-section"><h4>Dominios procesados</h4><ul class="detail-list">';
+        dominios.forEach(([d, c]) => {
+          html += `<li><span>${d}</span><span class="count">${c} correo(s)</span></li>`;
         });
+        html += '</ul></div>';
       }
 
-      // Extensiones procesadas
-      const extensiones = Object.keys(result.extensionesProcesadas || {});
+      // Extensiones
+      const extensiones = Object.entries(result.extensionesProcesadas || {});
       if (extensiones.length > 0) {
-        report += '\n═══════════════════════════════════\n';
-        report += 'TIPOS DE ARCHIVO GUARDADOS\n';
-        report += '═══════════════════════════════════\n';
-        extensiones.forEach(ext => {
-          report += `• .${ext}: ${result.extensionesProcesadas[ext]} archivo(s)\n`;
+        html += '<div class="detail-section"><h4>Tipos de archivo</h4><ul class="detail-list">';
+        extensiones.forEach(([e, c]) => {
+          html += `<li><span>.${e}</span><span class="count">${c} archivo(s)</span></li>`;
         });
+        html += '</ul></div>';
       }
 
-      report += '\n═══════════════════════════════════\n';
-      report += `✓ OK - Sistema funcionando correctamente`;
+      body.innerHTML = html;
+      document.getElementById('resultModal').classList.add('show');
 
-      // Mostrar el informe en un alert formateado
-      alert(report);
-
-      // También mostrar mensaje de éxito en el status
-      showStatus('Prueba completada exitosamente. Revise el informe detallado.', true);
+      showToast('Prueba completada.', 'success');
     }
 
+    /**
+     * Genera el HTML de una tarjeta de estadística.
+     * @param {string|number} value - Valor a mostrar
+     * @param {string} label - Etiqueta descriptiva
+     * @param {string} type - Clase de color (success, error, warning o vacío)
+     * @return {string} HTML de la tarjeta
+     */
+    function buildStatCard(value, label, type) {
+      return `<div class="stat-card ${type}">
+        <div class="stat-value">${value}</div>
+        <div class="stat-label">${label}</div>
+      </div>`;
+    }
+
+    /** Cierra el modal de resultados. */
+    function closeModal() {
+      document.getElementById('resultModal').classList.remove('show');
+    }
+
+    // Cerrar modal al pulsar fuera
+    document.getElementById('resultModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // =========================================================================
+    // CARGA/GUARDADO DE CONFIGURACION
+    // =========================================================================
+
+    /** Solicita la configuración actual al backend y actualiza el formulario. */
+    function loadCurrentConfig() {
+      google.script.run
+        .withSuccessHandler(updateFormValues)
+        .withFailureHandler(showError)
+        .cargarConfiguracion();
+
+      // Cargar versión
+      google.script.run
+        .withSuccessHandler(function(v) {
+          document.getElementById('versionBadge').textContent = 'v' + v;
+          document.getElementById('footerVersion').textContent = 'v' + v;
+        })
+        .withFailureHandler(function() {})
+        .obtenerVersion();
+    }
+
+    /**
+     * Rellena todos los campos del formulario con la configuración recibida.
+     * @param {Object} config - Configuración del backend
+     */
+    function updateFormValues(config) {
+      AppState.config = config;
+
+      // -- Campos básicos --
+      document.getElementById('mainFolder').value = config.MAIN_FOLDER_NAME || '';
+      document.getElementById('labelName').value = config.PROCESSED_LABEL_NAME || '';
+      document.getElementById('maxEmails').value = config.MAX_EMAILS_TO_PROCESS || 50;
+      document.getElementById('daysBack').value = config.DAYS_TO_LOOK_BACK || 0;
+
+      // -- Organización de carpetas --
+      document.getElementById('usarNombreUsuario').checked = config.USAR_NOMBRE_USUARIO || false;
+      document.getElementById('usarNombreDominiosGenericos').checked = config.USAR_NOMBRE_PARA_DOMINIOS_GENERICOS || false;
+      document.getElementById('dominiosGenericos').value = (config.DOMINIOS_GENERICOS || []).join(', ');
+      toggleDominiosGenericos();
+
+      // -- Patrones de asunto --
+      document.getElementById('usarPatronesAsunto').checked = config.USAR_PATRONES_ASUNTO || false;
+      renderPatronesChips(config.PATRONES_ASUNTO || []);
+      document.getElementById('patronesInput').value = (config.PATRONES_ASUNTO || []).join(', ');
+      togglePatrones();
+
+      // -- Dominios --
+      document.getElementById('dominiosIncluidos').value = (config.DOMINIOS_INCLUIDOS || []).join(', ');
+      document.getElementById('dominiosExcluidos').value = (config.DOMINIOS_EXCLUIDOS || []).join(', ');
+
+      // -- Extensiones --
+      document.getElementById('extensionesPermitidas').value = (config.EXTENSIONES_PERMITIDAS || []).join(', ');
+      document.getElementById('extensionesExcluidas').value = (config.EXTENSIONES_EXCLUIDAS || []).join(', ');
+      syncExtensionChips(config.EXTENSIONES_PERMITIDAS || []);
+
+      // -- Notificaciones --
+      document.getElementById('enviarNotificaciones').checked = config.ENVIAR_NOTIFICACIONES !== false;
+      document.getElementById('emailNotificacion').value = config.EMAIL_NOTIFICACION || '';
+      document.getElementById('mensajePersonalizado').value = config.MENSAJE_PERSONALIZADO || '';
+
+      // Frecuencia (chips)
+      const freq = config.FRECUENCIA_NOTIFICACIONES || 'diaria';
+      document.querySelectorAll('[data-freq]').forEach(function(chip) {
+        chip.classList.toggle('selected', chip.dataset.freq === freq);
+      });
+
+      // Detalle (radio)
+      const detalle = config.DETALLE_NOTIFICACIONES || 'basico';
+      const radio = document.querySelector('input[name="detalle"][value="' + detalle + '"]');
+      if (radio) radio.checked = true;
+
+      toggleNotificationSettings();
+    }
+
+    /**
+     * Extrae la configuración actual del formulario para enviarla al backend.
+     * @return {Object} Configuración lista para cambiarConfiguracion()
+     */
+    function extractConfigFromForm() {
+      return {
+        MAIN_FOLDER_NAME: document.getElementById('mainFolder').value.trim(),
+        PROCESSED_LABEL_NAME: document.getElementById('labelName').value.trim(),
+        MAX_EMAILS_TO_PROCESS: parseInt(document.getElementById('maxEmails').value) || 50,
+        DAYS_TO_LOOK_BACK: parseInt(document.getElementById('daysBack').value) || 0,
+
+        USAR_NOMBRE_USUARIO: document.getElementById('usarNombreUsuario').checked,
+        USAR_NOMBRE_PARA_DOMINIOS_GENERICOS: document.getElementById('usarNombreDominiosGenericos').checked,
+        DOMINIOS_GENERICOS: parseCommaSeparated(document.getElementById('dominiosGenericos').value),
+
+        USAR_PATRONES_ASUNTO: document.getElementById('usarPatronesAsunto').checked,
+        PATRONES_ASUNTO: parseCommaSeparated(document.getElementById('patronesInput').value),
+
+        DOMINIOS_INCLUIDOS: parseCommaSeparated(document.getElementById('dominiosIncluidos').value),
+        DOMINIOS_EXCLUIDOS: parseCommaSeparated(document.getElementById('dominiosExcluidos').value),
+
+        EXTENSIONES_PERMITIDAS: parseCommaSeparated(document.getElementById('extensionesPermitidas').value),
+        EXTENSIONES_EXCLUIDAS: parseCommaSeparated(document.getElementById('extensionesExcluidas').value),
+
+        ENVIAR_NOTIFICACIONES: document.getElementById('enviarNotificaciones').checked,
+        EMAIL_NOTIFICACION: document.getElementById('emailNotificacion').value.trim(),
+        MENSAJE_PERSONALIZADO: document.getElementById('mensajePersonalizado').value.trim(),
+        FRECUENCIA_NOTIFICACIONES: getSelectedFreq(),
+        DETALLE_NOTIFICACIONES: getSelectedDetalle()
+      };
+    }
+
+    // =========================================================================
+    // UTILIDADES DE FORMULARIO
+    // =========================================================================
+
+    /**
+     * Convierte un string separado por comas en un array limpio.
+     * @param {string} value - Texto con valores separados por comas
+     * @return {string[]} Array de strings sin espacios vacíos
+     */
+    function parseCommaSeparated(value) {
+      return value.split(',').map(function(s) { return s.trim(); }).filter(function(s) { return s; });
+    }
+
+    /** Obtiene la frecuencia de notificaciones seleccionada. */
+    function getSelectedFreq() {
+      var chip = document.querySelector('[data-freq].selected');
+      return chip ? chip.dataset.freq : 'diaria';
+    }
+
+    /** Obtiene el nivel de detalle seleccionado. */
+    function getSelectedDetalle() {
+      var radio = document.querySelector('input[name="detalle"]:checked');
+      return radio ? radio.value : 'basico';
+    }
+
+    /**
+     * Marca/desmarca los chips de extensión según las extensiones cargadas.
+     * @param {string[]} extensiones - Array de extensiones permitidas
+     */
+    function syncExtensionChips(extensiones) {
+      var extSet = {};
+      extensiones.forEach(function(e) { extSet[e.toLowerCase()] = true; });
+
+      document.querySelectorAll('[data-ext]').forEach(function(chip) {
+        var chipExts = chip.dataset.ext.split(',');
+        var allMatch = chipExts.length > 0 && chipExts.every(function(ce) { return extSet[ce]; });
+        var someMatch = chipExts.some(function(ce) { return extSet[ce]; });
+        chip.classList.toggle('selected', extensiones.length > 0 && (allMatch || someMatch));
+      });
+    }
+
+    /** Actualiza el input de extensiones permitidas según los chips seleccionados. */
+    function updateExtensionsFromChips() {
+      var selected = [];
+      document.querySelectorAll('[data-ext].selected').forEach(function(chip) {
+        selected.push(chip.dataset.ext);
+      });
+      document.getElementById('extensionesPermitidas').value = selected.join(', ');
+    }
+
+    /** Renderiza los chips de patrones de asunto. */
+    function renderPatronesChips(patrones) {
+      var container = document.getElementById('patronesChips');
+      container.innerHTML = '';
+      patrones.forEach(function(p) {
+        var chip = document.createElement('div');
+        chip.className = 'chip removable selected';
+        chip.innerHTML = p + ' <span class="material-icons remove-chip" onclick="removePatron(this)">close</span>';
+        container.appendChild(chip);
+      });
+    }
+
+    /** Elimina un chip de patrón y actualiza el input. */
+    function removePatron(el) {
+      var chip = el.parentElement;
+      chip.remove();
+      // Sincronizar input
+      var chips = document.querySelectorAll('#patronesChips .chip');
+      var values = [];
+      chips.forEach(function(c) { values.push(c.textContent.trim().replace('close', '').trim()); });
+      document.getElementById('patronesInput').value = values.join(', ');
+    }
+
+    // =========================================================================
+    // TOGGLES DE SECCIONES CONDICIONALES
+    // =========================================================================
+
+    function toggleNotificationSettings() {
+      var enabled = document.getElementById('enviarNotificaciones').checked;
+      document.getElementById('notificationSettings').classList.toggle('hidden', !enabled);
+    }
+
+    function togglePatrones() {
+      var enabled = document.getElementById('usarPatronesAsunto').checked;
+      document.getElementById('patronesSection').classList.toggle('hidden', !enabled);
+    }
+
+    function toggleDominiosGenericos() {
+      var enabled = document.getElementById('usarNombreDominiosGenericos').checked;
+      document.getElementById('dominiosGenericosSection').classList.toggle('hidden', !enabled);
+    }
+
+    function toggleTriggerSettings() {
+      var enabled = document.getElementById('triggerActivado').checked;
+      document.getElementById('triggerSettings').classList.toggle('hidden', !enabled);
+    }
+
+    function updateTriggerFields() {
+      var freq = document.getElementById('triggerFrecuencia').value;
+      document.getElementById('triggerHoraria').classList.toggle('hidden', freq !== 'horaria');
+      document.getElementById('triggerHoraDia').style.display = freq === 'horaria' ? 'none' : '';
+      document.getElementById('triggerDiaSemana').style.display = freq === 'semanal' ? '' : 'none';
+    }
+
+    /** Alterna el estado colapsado de una card. */
+    function toggleCollapse(header) {
+      header.classList.toggle('collapsed');
+      var content = header.nextElementSibling;
+      if (content) content.classList.toggle('collapsed');
+    }
+
+    // =========================================================================
+    // LOADING STATE
+    // =========================================================================
+
+    /** Pone un botón en estado de carga o lo restaura. */
     function setLoading(button, loading) {
       if (loading) {
         button.disabled = true;
@@ -843,219 +1743,260 @@
         button.innerHTML = '<span class="spinner"></span> Procesando...';
       } else {
         button.disabled = false;
-        button.innerHTML = button.dataset.originalHTML;
+        if (button.dataset.originalHTML) {
+          button.innerHTML = button.dataset.originalHTML;
+        }
       }
     }
 
     // =========================================================================
-    // GESTIÓN DE CONFIGURACIÓN
+    // HANDLERS
     // =========================================================================
 
-    function loadCurrentConfig() {
-      google.script.run
-        .withSuccessHandler(updateFormValues)
-        .withFailureHandler(showError)
-        .cargarConfiguracion();
-    }
-
-    function updateFormValues(config) {
-      AppState.config = config;
-
-      // Campos básicos
-      document.getElementById('mainFolder').value = config.MAIN_FOLDER_NAME || '';
-      document.getElementById('labelName').value = config.PROCESSED_LABEL_NAME || '';
-      document.getElementById('maxEmails').value = config.MAX_EMAILS_TO_PROCESS || 50;
-      document.getElementById('daysBack').value = config.DAYS_TO_LOOK_BACK || 0;
-
-      // Dominios
-      document.getElementById('dominiosIncluidos').value =
-        (config.DOMINIOS_INCLUIDOS || []).join(', ');
-      document.getElementById('dominiosExcluidos').value =
-        (config.DOMINIOS_EXCLUIDOS || []).join(', ');
-
-      // Extensiones
-      document.getElementById('extensionesPermitidas').value =
-        (config.EXTENSIONES_PERMITIDAS || []).join(', ');
-      document.getElementById('extensionesExcluidas').value =
-        (config.EXTENSIONES_EXCLUIDAS || []).join(', ');
-
-      // Notificaciones
-      document.getElementById('enviarNotificaciones').checked =
-        config.ENVIAR_NOTIFICACIONES !== false;
-
-      document.getElementById('emailNotificacion').value =
-        config.EMAIL_NOTIFICACION || '';
-
-      document.getElementById('mensajePersonalizado').value =
-        config.MENSAJE_PERSONALIZADO || '';
-
-      // Frecuencia de notificaciones (chips)
-      const freq = config.FRECUENCIA_NOTIFICACIONES || 'diaria';
-      document.querySelectorAll('[data-freq]').forEach(chip => {
-        if (chip.dataset.freq === freq) {
-          chip.classList.add('selected');
-        }
-      });
-
-      // Nivel de detalle (radio)
-      const detalle = config.DETALLE_NOTIFICACIONES || 'basico';
-      document.querySelector(`input[name="detalle"][value="${detalle}"]`).checked = true;
-
-      toggleNotificationSettings();
-    }
-
-    function extractConfigFromForm() {
-      return {
-        MAIN_FOLDER_NAME: document.getElementById('mainFolder').value.trim(),
-        PROCESSED_LABEL_NAME: document.getElementById('labelName').value.trim(),
-        MAX_EMAILS_TO_PROCESS: parseInt(document.getElementById('maxEmails').value) || 50,
-        DAYS_TO_LOOK_BACK: parseInt(document.getElementById('daysBack').value) || 0,
-        DOMINIOS_INCLUIDOS: document.getElementById('dominiosIncluidos').value
-          .split(',').map(s => s.trim()).filter(s => s),
-        DOMINIOS_EXCLUIDOS: document.getElementById('dominiosExcluidos').value
-          .split(',').map(s => s.trim()).filter(s => s),
-        EXTENSIONES_PERMITIDAS: document.getElementById('extensionesPermitidas').value
-          .split(',').map(s => s.trim()).filter(s => s),
-        EXTENSIONES_EXCLUIDAS: document.getElementById('extensionesExcluidas').value
-          .split(',').map(s => s.trim()).filter(s => s),
-        ENVIAR_NOTIFICACIONES: document.getElementById('enviarNotificaciones').checked,
-        EMAIL_NOTIFICACION: document.getElementById('emailNotificacion').value.trim(),
-        MENSAJE_PERSONALIZADO: document.getElementById('mensajePersonalizado').value.trim(),
-        FRECUENCIA_NOTIFICACIONES: document.querySelector('[data-freq].selected')?.dataset.freq || 'diaria',
-        DETALLE_NOTIFICACIONES: document.querySelector('input[name="detalle"]:checked')?.value || 'basico'
-      };
-    }
-
-    // =========================================================================
-    // HANDLERS DE EVENTOS
-    // =========================================================================
-
+    /** Guarda la configuración actual. */
     function handleSaveConfig(e) {
-      const button = e.currentTarget;
+      var button = e.currentTarget;
       setLoading(button, true);
 
-      const newConfig = extractConfigFromForm();
+      var newConfig = extractConfigFromForm();
 
       google.script.run
-        .withSuccessHandler(config => {
+        .withSuccessHandler(function(config) {
           setLoading(button, false);
           updateFormValues(config);
-          showStatus('Configuración guardada exitosamente', true);
+          showToast('Configuración guardada correctamente.', 'success');
         })
-        .withFailureHandler(error => {
+        .withFailureHandler(function(error) {
           setLoading(button, false);
           showError(error);
         })
         .cambiarConfiguracion(newConfig);
     }
 
+    /** Ejecuta una prueba de sincronización (5 correos). */
     function handleTestSync(e) {
-      const button = e.currentTarget;
+      var button = e.currentTarget;
       setLoading(button, true);
 
       google.script.run
-        .withSuccessHandler(result => {
+        .withSuccessHandler(function(result) {
           setLoading(button, false);
           showTestReport(result);
         })
-        .withFailureHandler(error => {
+        .withFailureHandler(function(error) {
           setLoading(button, false);
           showError(error);
         })
         .testSync();
     }
 
+    /** Restablece la configuración a valores por defecto. */
     function handleResetConfig() {
-      if (!confirm('¿Restablecer toda la configuración a valores predeterminados?')) {
-        return;
-      }
+      if (!confirm('¿Restablecer toda la configuración a valores predeterminados?')) return;
 
       google.script.run
-        .withSuccessHandler(config => {
+        .withSuccessHandler(function(config) {
           updateFormValues(config);
-          showStatus('Configuración restablecida', true);
+          showToast('Configuración restablecida a valores por defecto.', 'success');
         })
         .withFailureHandler(showError)
         .restablecerConfiguracion();
     }
 
+    /** Elimina la carpeta principal de adjuntos. */
     function handleDeleteFolder() {
-      if (!confirm('¿Está seguro de eliminar la carpeta principal? Se moverá a la papelera.')) {
-        return;
-      }
+      if (!confirm('¿Eliminar la carpeta principal? Se moverá a la papelera de Drive.')) return;
 
       google.script.run
-        .withSuccessHandler(result => {
-          showStatus(result.mensaje, result.exito);
+        .withSuccessHandler(function(result) {
+          showToast(result.mensaje, result.exito ? 'success' : 'error');
         })
         .withFailureHandler(showError)
         .eliminarCarpetaPrincipal();
     }
 
+    /** Resetea las etiquetas de correos procesados. */
     function handleResetLabels() {
-      if (!confirm('¿Está seguro de resetear las etiquetas de correos procesados?')) {
-        return;
-      }
+      if (!confirm('¿Resetear las etiquetas? Los correos se reprocesarán en la próxima sincronización.')) return;
 
       google.script.run
-        .withSuccessHandler(result => {
-          showStatus(result.mensaje, result.exito);
+        .withSuccessHandler(function(result) {
+          showToast(result.mensaje, result.exito ? 'success' : 'error');
         })
         .withFailureHandler(showError)
         .resetearEtiquetasProcesados();
     }
 
-    function toggleNotificationSettings() {
-      const enabled = document.getElementById('enviarNotificaciones').checked;
-      const settings = document.getElementById('notificationSettings');
-      settings.classList.toggle('hidden', !enabled);
+    /** Consulta el estado de correos pendientes. */
+    function handleCheckPending() {
+      var btn = document.getElementById('pendingBtn');
+      setLoading(btn, true);
+
+      google.script.run
+        .withSuccessHandler(function(msg) {
+          setLoading(btn, false);
+          showToast(msg, 'warning');
+        })
+        .withFailureHandler(function(error) {
+          setLoading(btn, false);
+          showError(error);
+        })
+        .obtenerEstadoPendientes();
+    }
+
+    /** Aplica la configuración de automatización (trigger). */
+    function handleApplyTrigger() {
+      var btn = document.getElementById('applyTriggerBtn');
+      setLoading(btn, true);
+
+      var freq = document.getElementById('triggerFrecuencia').value;
+      var triggerConfig = {
+        ACTIVADO: true,
+        FRECUENCIA: freq,
+        INTERVALO_HORAS: parseInt(document.getElementById('triggerIntervaloHoras').value) || 1,
+        HORA_EJECUCION: parseInt(document.getElementById('triggerHora').value) || 8,
+        MINUTO_EJECUCION: 0,
+        DIA_SEMANA: parseInt(document.getElementById('triggerDia').value) || 2
+      };
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          setLoading(btn, false);
+          showToast(result.mensaje, result.exito ? 'success' : 'error');
+        })
+        .withFailureHandler(function(error) {
+          setLoading(btn, false);
+          showError(error);
+        })
+        .configureTrigger(triggerConfig);
+    }
+
+    /** Desactiva la automatización eliminando todos los triggers. */
+    function handleDisableTrigger() {
+      if (!confirm('¿Desactivar la sincronización automática?')) return;
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          document.getElementById('triggerActivado').checked = false;
+          toggleTriggerSettings();
+          showToast(result.mensaje, result.exito ? 'success' : 'error');
+        })
+        .withFailureHandler(showError)
+        .configureTrigger({ ACTIVADO: false });
+    }
+
+    /** Carga los logs de errores del backend. */
+    function handleLoadLogs() {
+      google.script.run
+        .withSuccessHandler(function(logs) {
+          var container = document.getElementById('logsContainer');
+
+          if (!logs || logs.length === 0) {
+            container.innerHTML = '<div class="log-empty">' +
+              '<span class="material-icons">check_circle</span>' +
+              'No hay errores registrados' +
+            '</div>';
+            return;
+          }
+
+          var html = '';
+          // Mostrar los más recientes primero
+          logs.reverse().forEach(function(entry) {
+            var time = entry.timestamp ? new Date(entry.timestamp).toLocaleString() : '--';
+            var msg = entry.message || '';
+            if (entry.error && entry.error.message) {
+              msg += ': ' + entry.error.message;
+            } else if (entry.data) {
+              msg += ' | ' + JSON.stringify(entry.data);
+            }
+            html += '<div class="log-entry log-error">' +
+              '<span class="log-time">' + time + '</span>' +
+              '<span class="log-message">' + escapeHtml(msg) + '</span>' +
+            '</div>';
+          });
+
+          container.innerHTML = html;
+        })
+        .withFailureHandler(showError)
+        .obtenerLogsErrores();
+    }
+
+    /** Limpia los logs de errores. */
+    function handleClearLogs() {
+      if (!confirm('¿Eliminar todos los logs de errores?')) return;
+
+      google.script.run
+        .withSuccessHandler(function(result) {
+          document.getElementById('logsContainer').innerHTML =
+            '<div class="log-empty">' +
+            '<span class="material-icons">check_circle</span>' +
+            'Logs eliminados correctamente' +
+            '</div>';
+          showToast(result.mensaje, result.exito ? 'success' : 'error');
+        })
+        .withFailureHandler(showError)
+        .limpiarLogsErrores();
+    }
+
+    /**
+     * Escapa HTML para prevenir inyección en el renderizado de logs.
+     * @param {string} text - Texto a escapar
+     * @return {string} Texto seguro para innerHTML
+     */
+    function escapeHtml(text) {
+      var div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
     }
 
     // =========================================================================
-    // INICIALIZACIÓN
+    // INICIALIZACION
     // =========================================================================
 
     document.addEventListener('DOMContentLoaded', function() {
-      // Cargar configuración inicial
+      // Cargar configuración
       loadCurrentConfig();
 
       // Botones principales
       document.getElementById('saveBtn').addEventListener('click', handleSaveConfig);
       document.getElementById('testBtn').addEventListener('click', handleTestSync);
 
-      // Botones de danger zone
+      // Danger zone
       document.getElementById('resetBtn').addEventListener('click', handleResetConfig);
       document.getElementById('eliminarCarpetaBtn').addEventListener('click', handleDeleteFolder);
       document.getElementById('resetearEtiquetasBtn').addEventListener('click', handleResetLabels);
 
-      // Notificaciones toggle
-      document.getElementById('enviarNotificaciones')
-        .addEventListener('change', toggleNotificationSettings);
+      // Toggles
+      document.getElementById('enviarNotificaciones').addEventListener('change', toggleNotificationSettings);
+      document.getElementById('usarPatronesAsunto').addEventListener('change', togglePatrones);
+      document.getElementById('usarNombreDominiosGenericos').addEventListener('change', toggleDominiosGenericos);
+      document.getElementById('triggerActivado').addEventListener('change', toggleTriggerSettings);
+      document.getElementById('triggerFrecuencia').addEventListener('change', updateTriggerFields);
 
-      // Chips para tipos de archivo
-      document.querySelectorAll('[data-ext]').forEach(chip => {
+      // Chips de extensiones
+      document.querySelectorAll('[data-ext]').forEach(function(chip) {
         chip.addEventListener('click', function() {
           this.classList.toggle('selected');
-          updateExtensionsInput();
+          updateExtensionsFromChips();
         });
       });
 
-      // Chips para frecuencia de notificaciones
-      document.querySelectorAll('[data-freq]').forEach(chip => {
+      // Chips de frecuencia de notificaciones
+      document.querySelectorAll('[data-freq]').forEach(function(chip) {
         chip.addEventListener('click', function() {
-          document.querySelectorAll('[data-freq]').forEach(c => c.classList.remove('selected'));
+          document.querySelectorAll('[data-freq]').forEach(function(c) { c.classList.remove('selected'); });
           this.classList.add('selected');
         });
       });
+
+      // Inicializar campos condicionales de triggers
+      updateTriggerFields();
+
+      // Cerrar modal con Escape
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
     });
-
-    function updateExtensionsInput() {
-      const selected = Array.from(document.querySelectorAll('[data-ext].selected'))
-        .map(chip => chip.dataset.ext)
-        .join(',');
-
-      document.getElementById('extensionesPermitidas').value = selected;
-    }
   </script>
 </body>
 </html>

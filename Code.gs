@@ -1,15 +1,22 @@
 /**
- * Attach GMAIL v1.1.0
+ * Attach GMAIL
  * ===============================================================
  *
- * Punto de entrada principal y gestión de configuración
+ * Punto de entrada principal y gestión de configuración.
+ * Centraliza la versión del proyecto y expone las funciones
+ * que la UI necesita para comunicarse con el backend.
  *
- * @proyecto: Attach GMAIL
- * @versión: 1.1.0
- * @autor: https://github.com/686f6c61
- * @fecha: 2025-11-17
- * @licencia: MIT
+ * @proyecto Attach GMAIL
+ * @autor https://github.com/686f6c61
+ * @licencia MIT
  */
+
+// ============================================================================
+// VERSIÓN CENTRALIZADA
+// ============================================================================
+
+/** Versión actual del proyecto. Único punto de verdad para todos los ficheros. */
+const VERSION = '2.0.0';
 
 // ============================================================================
 // CONFIGURACIÓN POR DEFECTO
@@ -131,7 +138,7 @@ function doGet() {
   cargarConfiguracion();
 
   return HtmlService.createHtmlOutputFromFile('UI')
-    .setTitle('Attach GMAIL - Configuración')
+    .setTitle(`Attach GMAIL v${VERSION} - Configuración`)
     .setWidth(900)
     .setHeight(700)
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
@@ -270,4 +277,13 @@ function limpiarLogsErrores() {
     log('ERROR', 'Error limpiando logs', error);
     return { exito: false, mensaje: error.toString() };
   }
+}
+
+/**
+ * Devuelve la versión actual del proyecto.
+ * Expuesta para que la UI la lea dinámicamente.
+ * @return {string} Versión (p. ej. "2.0.0")
+ */
+function obtenerVersion() {
+  return VERSION;
 }

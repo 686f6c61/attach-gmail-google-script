@@ -2,13 +2,13 @@
  * Attach GMAIL - Servicios
  * ===============================================================
  *
- * Interacciones con Gmail, Drive y otros servicios de Google
+ * Interacciones con Gmail, Drive y otros servicios de Google.
+ * Gestiona la lectura de correos, la escritura en Drive,
+ * las notificaciones por email y la configuración de triggers.
  *
- * @proyecto: Attach GMAIL
- * @versión: 1.1.0
- * @autor: https://github.com/686f6c61
- * @fecha: 2025-11-17
- * @licencia: MIT
+ * @proyecto Attach GMAIL
+ * @autor https://github.com/686f6c61
+ * @licencia MIT
  */
 
 // ============================================================================
@@ -371,7 +371,7 @@ function sendSyncNotification(stats) {
     }
 
     body += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-    body += `Generado por Attach GMAIL v1.1.0\n`;
+    body += `Generado por Attach GMAIL v${VERSION}\n`;
     body += `https://github.com/686f6c61/attach-gmail-google-script\n`;
 
     GmailApp.sendEmail(email, subject, body);
@@ -407,7 +407,7 @@ function sendErrorNotification(error) {
 
     body += `Por favor, revise la configuración y los registros del script.\n\n`;
     body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-    body += `Generado por Attach GMAIL v1.1.0\n`;
+    body += `Generado por Attach GMAIL v${VERSION}\n`;
 
     GmailApp.sendEmail(email, subject, body);
 
@@ -437,7 +437,7 @@ function sendResetNotification(threads, messages) {
     body += `• Mensajes individuales: ${messages}\n\n`;
     body += `Estos correos serán procesados nuevamente en la próxima sincronización.\n\n`;
     body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-    body += `Generado por Attach GMAIL v1.1.0\n`;
+    body += `Generado por Attach GMAIL v${VERSION}\n`;
 
     GmailApp.sendEmail(email, subject, body);
 
